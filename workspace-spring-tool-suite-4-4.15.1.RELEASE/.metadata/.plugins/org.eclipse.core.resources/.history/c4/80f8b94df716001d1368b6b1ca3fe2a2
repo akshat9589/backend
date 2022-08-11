@@ -1,0 +1,66 @@
+package com.teamb.demo.dao;
+
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.xml.crypto.Data;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
+
+@Entity
+public class Orders {
+	@Id
+	@JsonProperty("orderid")
+	private Integer orderid;
+	@JsonProperty("customer_name")
+	private String customer_name;
+	@JsonProperty("username")
+	private String username;
+	@JsonProperty("carname")
+	private String carname;
+	@JsonProperty("bikename")
+	private String bikename;
+//	
+	@JsonProperty("final_price")
+	private Long final_price;
+	@JsonProperty("pickup_location")
+	private String pickup_location;
+	@JsonProperty("pickup_day")
+	private java.sql.Date pickup_day;
+	@JsonProperty("return_date")
+	private java.sql.Date return_date;
+	
+	//
+	@JsonProperty("images")
+	private String images;
+	@JsonProperty("order_status")
+	private String order_status;
+	
+	
+	Orders(){};
+	Orders(Integer orderid,String customer_name , String username, String carname,String bikename,String pickup_location,String images,Long final_price,String order_status, String pickup_day, String return_date){
+		this.orderid = orderid;
+		this.customer_name = customer_name;
+		this.carname = carname;
+		this.final_price = final_price;
+		this.pickup_location = pickup_location;
+		this.bikename= bikename;
+		this.order_status = order_status;
+		this.username = username;
+		this.images = images;
+		
+		//
+		java.sql.Date pickup_date = java.sql.Date.valueOf(pickup_day);
+		java.sql.Date return_day = java.sql.Date.valueOf(return_date);
+		this.return_date = return_day;
+		this.pickup_day = pickup_date;
+		
+		
+	}
+	
+}
+
